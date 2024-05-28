@@ -1,0 +1,49 @@
+.container-logo{
+  height: 50px;
+  width: 100%;
+  margin: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  margin-bottom: 50px;
+}
+
+.logo {
+height: 150px;
+border-radius: 30px;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #ff6464aa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #fb61619e);
+}
+
+.container-pantalla{
+  background-color: white;
+  height: 100px;
+  border-radius: 30px;
+  width: 400px;
+}
+
+.container-btn{
+  width: 400px;
+}
+
+.grupos{
+  display: flex;
+  
+}
+
+.lista{
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+
+/* .btn-contenedor:focus,
+.btn-contenedor:focus-visible{
+  outline: 4px auto -webkit-focus-ring-color;
+} */
