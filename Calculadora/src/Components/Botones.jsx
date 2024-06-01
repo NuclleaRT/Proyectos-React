@@ -1,14 +1,17 @@
-import '../style/Boton.css'
+import '../style/Botones.css'
 
 export function Botones (props){
-    const esOperador = (valor) =>{
-        return isNaN(valor) && (valor !== '.') && (valor !=='=')
+
+    const esOperador = valor =>{
+       return isNaN(valor) && (valor !== '.' ) && (valor !== '=')
     }
 
-    return (
-        <div
-         className={`btn-contenedor ${esOperador(props.children)? 'operador': ''}`.trim()}
-         onClick={() => props.manejarClick(props.children)}
+    return(
+
+        <div 
+        className={`boton-contenedor ${esOperador(props.children)? 'operador' : ''}`.trimEnd()}
+        // se define funcion anonima para que enviar el valor del boton 
+        onClick={() => props.manejarClick(props.children)}    
         >
             {props.children}
 

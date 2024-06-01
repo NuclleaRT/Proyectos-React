@@ -1,0 +1,39 @@
+---
+
+
+const {id} = Astro.props
+---
+
+<section id={id}>
+    <div class="hero">        
+        <div class="info">
+            <h1>Hola, Soy Cristobal</h1>            
+            <h2>
+                <strong class="strong-exp">2 años de experiencia.</strong> Desarrollo web.
+                De Temuco,<strong class="strong-chile">Chile.</strong>
+            </h2>
+        </div>
+        
+    </div>
+</section>
+
+<style>
+
+    .hero{
+        margin-top: 200px;
+        margin-bottom: 200px;
+    }
+    .info{
+        font-size: 25px;
+        font-weight: 700;
+        color: #f5f5f5eb;
+    }
+
+    .strong-exp{
+        color:#00ACB7;
+    }
+
+    .strong-chile{
+        color: #8B69D4;
+    }
+</style>

@@ -1,0 +1,60 @@
+<header>
+    
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>        
+        <a href="#about">About</a>
+    </nav>
+
+</header>
+
+<style>
+   header {
+            
+            display: flex;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            justify-content: center;            
+            padding: 2rem;
+        }
+    
+    nav{        
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        text-align: center;        
+        position: fixed;
+        backdrop-filter: blur(20px);
+        padding: 0 0 1.7rem 0;
+        border-radius: 15px;
+        border: .03px solid #7c39fd47;
+    }
+
+    a{
+        
+        margin-top: 30px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: rgb(210, 210, 210);
+        
+    }
+    a:hover{
+        color: rgba(210, 210, 210, 0.655);       
+    }
+   
+</style>
+
+<script>
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>

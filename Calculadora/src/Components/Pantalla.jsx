@@ -1,8 +1,10 @@
+import "../style/Pantalla.css"
 
-export function Pantalla ({prop}){
+export function Pantalla ({input}){
     return (
-        <div>
-            {prop}
+        <div className="input">
+            {input}
+            
         </div>
     )
 }

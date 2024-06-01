@@ -1,0 +1,49 @@
+---
+import Layout from "@/layouts/Layout.astro"
+
+import About from "@/components/About.astro"
+import Education from "@/components/Education.astro"
+import Experience from "@/components/Experience.astro"
+import Hero from "@/components/Hero.astro"
+import Header from "@/components/Header.astro"
+import Projects from "@/components/Projects.astro"
+import Skills from "@/components/Skills.astro"
+
+---
+<Layout title="Portafolio">
+	<main class="container">
+		<Header />
+		<Hero id={'home'}/>
+		<Experience />
+		<Projects />
+		<About />
+		<Skills />
+		
+	</main>
+</Layout>
+
+<style is:global>
+   body {
+        scroll-behavior: smooth; /* Scroll suave */
+    }
+
+	    .container{
+        display: grid;
+		grid-template-columns: 1fr minmax(300px, 850px) 1fr;
+		grid-template-rows: auto;
+		gap: 20px;
+    }
+
+	.container >*{
+		grid-column: 2;
+	}
+
+	.info{
+        font-size: 25px;
+        font-weight: 700;
+        color: #f5f5f5eb;
+		margin-bottom: 100px;
+    }
+	
+	
+</style>

@@ -1,85 +1,70 @@
-import logo from './img/Arlecc.png' 
+
 import './App.css'
 import { Pantalla } from './Components/Pantalla'
 import { Botones } from './Components/Botones'
 import React, {useEffect, useState} from 'react'
+import { BotonClear } from './Components/BotonClear'
+import {evaluate} from 'mathjs'; 
 
 function App() {
-  const manejarClick = () => {
 
+  const [input, SetInput] = useState('')
+
+  const click = val =>{
+    SetInput(input + val);
+  }
+  const Clear = () =>{
+    SetInput('');
+  }
+  
+  //installa el paquete mathjs 
+  const calcularResultado = () => {
+    //comprobamos si hay algun valor ingresado en pantalla
+    if(input){
+      SetInput(evaluate(input));
+    }else{
+      alert('Ingrese algun valor antes de calcular un resultado');
+    }
+   
   }
 
-  let numero = 1
-  
-  function calcular (n){
-    if(numero < n){return 'hola'}
+ return (
 
+  <div className='App'>
+    <div className='contenedor-calculadora'>
+
+   
+      <Pantalla input={input}/>
+      
+     <div className='fila'>
+      <Botones manejarClick={click} >7</Botones>
+      <Botones manejarClick={click}>8</Botones>
+      <Botones manejarClick={click}>9</Botones>
+      <Botones manejarClick={click}>/</Botones>
+     </div>
+     <div className='fila'>
+      <Botones manejarClick={click}>4</Botones>
+      <Botones manejarClick={click}>5</Botones>
+      <Botones manejarClick={click}>6</Botones>
+      <Botones manejarClick={click}>*</Botones>
+     </div>
+     <div className='fila'>
+      <Botones manejarClick={click}>1</Botones>
+      <Botones manejarClick={click}>2</Botones>
+      <Botones manejarClick={click}>3</Botones>
+      <Botones manejarClick={click}>-</Botones>
+     </div>
+     <div className='fila'>
+      <Botones manejarClick={click}>0</Botones>
+      <Botones manejarClick={click}>.</Botones>
+      <Botones manejarClick={calcularResultado}>=</Botones>
+      <Botones manejarClick={click}>+</Botones>
+     </div>
     
-    console.log(numero)
-    numero = numero + 1
-    calcular(n - 1)
-  }
-
-  calcular(3)
-  
-
-  const [users, setUsers] = useState ([]);
-
-  useEffect(() =>{
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(respuesta => respuesta.json())
-      .then(data => setUsers(data))
-      .catch(error => console.error('Error fetching data:', error))
-  },[])
-
-  return (
-    <>
-      <div className='App'>
-        <div className='container-logo'>
-          <img 
-            className='logo'
-            src={logo} 
-            alt="Logo de calculadora"
-           />
-        </div>       
-        <div className='container-btn'>
-          <ul className='lista'>
-              {users.map(user => (
-                <li key={user.id} >{user.username}</li>
-              ))}
-          </ul>
-
-          <div className='grupos'>
-            <Botones nombreBtn={manejarClick}>7</Botones>
-            <Botones nombreBtn={manejarClick}>8</Botones>
-            <Botones nombreBtn={manejarClick}>9</Botones>
-            <Botones nombreBtn={manejarClick}>/</Botones>                     
-          </div>
-        
-          <div className='grupos'>
-            <Botones nombreBtn={manejarClick}>4</Botones>
-            <Botones nombreBtn={manejarClick}>5</Botones>
-            <Botones nombreBtn={manejarClick}>6</Botones>
-            <Botones nombreBtn={manejarClick}>*</Botones>                     
-          </div>
-        
-          <div className='grupos'>
-            <Botones nombreBtn={manejarClick}>1</Botones>
-            <Botones nombreBtn={manejarClick}>2</Botones>
-            <Botones nombreBtn={manejarClick}>3</Botones>
-            <Botones nombreBtn={manejarClick}>-</Botones>                     
-          </div>
-          
-          <div className='grupos'>
-            <Botones nombreBtn={manejarClick}>0</Botones>
-            <Botones nombreBtn={manejarClick}>.</Botones>
-            <Botones nombreBtn={manejarClick}>+</Botones>
-            <Botones nombreBtn={manejarClick}>=</Botones>                     
-          </div>
-        </div>
-      </div>
-    </>
-  )
+      <BotonClear manejarClear={Clear} >Clear</BotonClear>
+    </div>
+  </div>
+ )
 }
 
 export default App

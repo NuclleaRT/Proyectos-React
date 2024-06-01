@@ -1,49 +1,37 @@
-.container-logo{
+.App{  
+  height: 100vh;
+  padding-top: 10px;  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-contenedor{
   height: 50px;
   width: 100%;
   margin: 8px;
   display: flex;
   align-items: center;
-  justify-content: center;  
-  margin-bottom: 50px;
+  justify-content: center;
 }
 
-.logo {
-height: 150px;
-border-radius: 30px;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #ff6464aa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #fb61619e);
-}
-
-.container-pantalla{
-  background-color: white;
+.logo-img{
   height: 100px;
-  border-radius: 30px;
-  width: 400px;
 }
 
-.container-btn{
+.contenedor-calculadora{
   width: 400px;
+  height: 600px;
+  padding: 14px;
+  background-color: rgba(255, 255, 255, 0.733);
+  border-radius: 20px;
+  border: 5px solid blueviolet;
 }
 
-.grupos{
+.fila{
+  margin: 4px;
   display: flex;
-  
+  align-items: center;
+  justify-content: center;
 }
-
-.lista{
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-
-
-/* .btn-contenedor:focus,
-.btn-contenedor:focus-visible{
-  outline: 4px auto -webkit-focus-ring-color;
-} */
