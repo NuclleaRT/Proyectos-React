@@ -1,33 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    
+    <div className='App' class="mx-auto">
+      <div class="card grid grid-cols-4">
+        <img src="https://images.wikidexcdn.net/mwuploads/wikidex/7/7b/latest/20180530163133/Artwork_Pikachu_LGPE.png"
+             alt="imagen de pikachu"
+             class=" w-24 rounded-full " />
+        <div class="col-span-2">
+          <h3 class="font-bold text-2xl ">Pikachu - Pokemon</h3>
+          <p class="">Vive en grupo en los bosques. Almacena electricidad en las bolsas de sus mejillas. 
+              A veces utiliza la electricidad de sus mejillas para recargar a un Pikachu amigo 
+              que esté débil. Este inteligente Pokémon tuesta las duras bayas con electricidad 
+              para hacerlas más comestibles.
+          </p>
+        </div>
+        <div class="text-3xl font-bold border-l-4 border-l-slate-600 ml-10 p-5">
+          <div class="mb-5">Tipo</div>
+          <div class="bg-yellow-300 rounded-lg">Electrico</div>
+          <div></div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+
+    </div>
+      
+    
+
     </>
   )
 }
