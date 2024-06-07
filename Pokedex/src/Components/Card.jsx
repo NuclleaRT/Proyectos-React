@@ -1,11 +1,11 @@
 
 
 
-export function Card (){
+export function Card ({ id, nombre, tipo, imagen, altura, peso}){
     return(
-        <div class="pokemon bg-slate-100 rounded-lg img-svg" id='listaPokemon'>
+        <div class="pokemon bg-slate-100 rounded-lg img-svg">
             
-            <p class="text-left m-2 font-bold text-2xl">N°#025</p>
+            <p class="text-left m-2 font-bold text-2xl">N°#{id}</p>
             <div class="pokemon-tipos grid grid-cols-3">
                     <p class="col-span-2"></p>
                     <p className="tipo  bg-yellow-400 font-bold  py-1 rounded-l-lg border-2 border-gray-950 ">ELECTRIC</p>
@@ -15,7 +15,7 @@ export function Card (){
             <div class="">
                 
                 <img 
-                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png" 
+                    src={imagen} 
                     alt="imagen Pokemon" 
                     class="col-span-1  sombra"/>
                     
@@ -23,15 +23,15 @@ export function Card (){
             </div>
             <div class="pokemon-info" >
                 <div class="nombre-contenedor  m-2">                    
-                    <h2 class="pokemon-nombre text-white text-4xl font-bold">Pikachu</h2>
+                    <h2 class="pokemon-nombre text-white text-4xl font-bold">{nombre}</h2>
                 </div>
 
                 
                 <div class="pokemon-stat grid grid-cols-3">
                     <p class="col-span-2"></p>
-                    <p className="stat bg-gray-500 font-bold  py-1 rounded-l-lg border-2 border-gray-950 ">1M</p>
+                    <p className="stat bg-gray-500 font-bold  py-1 rounded-l-lg border-2 border-gray-950 ">{altura}</p>
                     <p class="col-span-2"></p>
-                    <p className="stat bg-gray-500 font-bold  py-1 rounded-l-lg border-2 border-gray-950 ">12Kg</p>
+                    <p className="stat bg-gray-500 font-bold  py-1 rounded-l-lg border-2 border-gray-950 ">{peso}Kg</p>
             </div>
             </div>
         </div>
