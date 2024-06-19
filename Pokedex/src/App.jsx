@@ -1,110 +1,104 @@
 import { useState, useEffect } from 'react';
-
-import './App.css'
-import { Header } from './Components/Header'
-import { Card } from './Components/Card'
-import { PokemonInfo } from './Components/PokemonInfo';
-
+import './App.css';
+import { Header } from './Components/Header';
+import { Card } from './Components/Card';
 
 function App() {
- 
-//   const [pokemonData, setPokemonData] = useState([]);
-//   const [statePokemon, setStatePokemon] = useState(null);
+  const [pokemons, setPokemons] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-
-//   //traer lista de pokemon
-//   useEffect(() => {
-//     fetch('https://pokeapi.co/api/v2/pokemon?limit=10')
-//       .then((resp) => resp.json())
-//       .then((data) => setPokemonData(data.results))
-//       .catch((e) => console.error(' El fetch lista pokemon muestra un error: ',e))
-//   },[])
-
-//   //manejar click en el <li></li>
-// const handleClick = (nombrePokemon) =>{
-//   fetch(`https://pokeapi.co/api/v2/pokemon/${nombrePokemon}`)
-//   .then((resp) => resp.json())
-//   .then((data) => setStatePokemon(data))
-//   .catch((error) => console.error('Error en el fetch handleClick: ', error))
-// }
- 
-
-
-// const [search, setSearch] = useState('');
-
-// const handleSearch = () =>{
-//   handleClick(search.toLowerCase())
-// }
-
-  
-  const [PokemonList, setPokemonList] = useState([]);
-
-useEffect(() => {
-  const fetchPokemonList = async () => {
-    try{
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10')
-      const data = await response.json();
-      
-     
-    const detallesPokemon = await Promise.all(
-      data.results.map( async(pokemon) =>{
-        const resp = await fetch(pokemon.url);
-        const detalles = await resp.json();
-
-        return{
-          id: detalles.id,
-          name: detalles.name,
-          types: detalles.types.map((typeInfo) => typeInfo.type.name),
-          altura: detalles.height,
-          peso: detalles.weight,
-          imagen: detalles.sprites.other['official-artwork'].front_default
+  useEffect(() => {
+    const fetchPokemons = async () => {
+      try {
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-      })
-    )
-    setPokemonList(detallesPokemon);
+        const data = await response.json();
 
-    }catch (error){
-      console.error('Error al usar FetchList: ', error)
-    }
+        const detailedPokemons = await Promise.all(
+          data.results.map(async (pokemon) => {
+            const response = await fetch(pokemon.url);
+            const details = await response.json();
+
+            return {
+              id: details.id,
+              name: details.name,
+              types: details.types.map((typeInfo) => ({
+                name: typeInfo.type.name,
+                color: getTypeColor(typeInfo.type.name),
+              })),
+              height: details.height / 10,
+              weight: details.weight / 10, 
+              image: details.sprites.other['official-artwork'].front_default,
+            };
+          })
+        );
+
+        setPokemons(detailedPokemons);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchPokemons();
+  }, []);
+
+  const getTypeColor = (typeName) => {
+    // Define your type color mapping here
+    const colors = {
+      electric: 'yellow-400',
+      dragon: 'blue-700',
+      fire: 'orange-400',
+      water: 'blue-400',
+      grass: 'green-400',
+      ice: 'teal-400',
+      fighting: 'red-600',
+      poison: 'purple-400',
+      ground: 'amber-700',
+      flying: 'indigo-400',
+      psychic: 'red-400',
+      bug: 'lime-400',
+      rock: 'rock',
+      ghost: 'indigo-800',
+      dark: 'slate-800',
+      steel: 'cyan-700',
+      fairy: 'pink-400',
+      normal: 'slate-400'   
+    };
+    return colors[typeName] || 'gray-500';
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
-  fetchPokemonList();
-},[])
 
-
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <>
-      <Header/>
-      <main class="p-2 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xsm:grid-cols-2 gap-4" id='listaPokemon'>
-      <h1>Pokemon Information</h1>
-        <ul>
-
-         
-   
-        {/* {pokemonData.map((pokemon, index) => (
-              <li key={index} onClick={() => handleClick(pokemon.name)}>
-                {pokemon.name}
-              </li>))}
-
-              
-                <input type="text" 
-                  id=''
-                  value={search} 
-                  onChange={(e) => setSearch(e.target.value)} 
-                  placeholder='ingrese un nombre'
-                />
-                <button onClick={handleSearch}>Buscar</button> */}
-                
-              
-            
-
-        </ul>
-            {/* {statePokemon && <PokemonInfo pokemonData={statePokemon}/>} */}
-
-
+      <Header />
+      <main className="p-2 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xsm:grid-cols-1 gap-4" id="listaPokemon">
+        {pokemons.map((pokemon) => (
+          <Card
+            key={pokemon.id}
+            id={pokemon.id}
+            name={pokemon.name}
+            types={pokemon.types}
+            height={pokemon.height}
+            weight={pokemon.weight}
+            image={pokemon.image}
+          />
+        ))}
       </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
